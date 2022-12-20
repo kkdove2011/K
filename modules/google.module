@@ -1,5 +1,5 @@
-#!name=Google
-#!desc=Safari搜索
+#!name=Google搜索
+#!desc=
 
 [URL Rewrite]
 ^https?://(www.)?(g|google)\.cn https://www.google.com 302
