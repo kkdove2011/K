@@ -117,33 +117,23 @@ async function setENV(name, url, database) {
 	Advanced.Translator.Interval = parseInt(Advanced.Translator?.Interval, 10) // BoxJs字符串转数字
 	Advanced.Translator.Exponential = JSON.parse(Advanced.Translator?.Exponential) //  BoxJs字符串转Boolean
 	/***************** Platform *****************/
-	const Platform = /\.apple\.com/i.test(url) ? "Apple"
-		: /\.(dssott|starott)\.com/i.test(url) ? "Disney_Plus"
-			: /\.(hls\.row\.aiv-cdn|akamaihd|cloudfront)\.net/i.test(url) ? "Prime_Video"
-				: /\.(api\.hbo|hbomaxcdn)\.com/i.test(url) ? "HBO_Max"
-					: /\.(hulustream|huluim)\.com/i.test(url) ? "Hulu"
-						: /\.(cbsaavideo|cbsivideo|cbs)\.com/i.test(url) ? "Paramount_Plus"
-							: /dplus-ph-/i.test(url) ? "Discovery_Plus_Ph"
-								: /\.peacocktv\.com/i.test(url) ? "Peacock_TV"
-									: /\.uplynk\.com/i.test(url) ? "Discovery_Plus"
-										: /\.fubo\.tv/i.test(url) ? "Fubo_TV"
-											: /(\.youtube|youtubei\.googleapis)\.com/i.test(url) ? "YouTube"
-												: /\.(netflix\.com|nflxvideo\.net)/i.test(url) ? "Netflix"
-													: "Universal"
+	const Platform = /\.(api\.hbo|hbomaxcdn)\.com/i.test(url) ? "HBO_Max"
+						: /\.(netflix\.com|nflxvideo\.net)/i.test(url) ? "Netflix"
+							: "Universal"
 	$.log(`🚧 ${$.name}, Set Environment Variables`, `Platform: ${Platform}`, "");
 	/***************** Settings *****************/
 	let { Settings, Caches = [], Configs } = await getENV(name, Platform, database);
-	if (Platform == "Apple") {
-		let platform = /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\/subscription\//i.test(url) ? "Apple_TV_Plus"
-			: /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\/workout\//i.test(url) ? "Apple_Fitness"
-				: /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\//i.test(url) ? "Apple_TV"
-					: /vod-.*-aoc\.tv\.apple\.com/i.test(url) ? "Apple_TV_Plus"
-						: /vod-.*-amt\.tv\.apple\.com/i.test(url) ? "Apple_TV"
-							: /(hls|hls-svod)\.itunes\.apple\.com/i.test(url) ? "Apple_Fitness"
-								: "Apple"
-		$.log(`🚧 ${$.name}, Set Environment Variables`, `platform: ${platform}`, "");
-		Settings = await getENV(name, platform, database).then(v=> v.Settings);
-	};
+	// if (Platform == "Apple") {
+	// 	let platform = /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\/subscription\//i.test(url) ? "Apple_TV_Plus"
+	// 		: /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\/workout\//i.test(url) ? "Apple_Fitness"
+	// 			: /\.itunes\.apple\.com\/WebObjects\/(MZPlay|MZPlayLocal)\.woa\/hls\//i.test(url) ? "Apple_TV"
+	// 				: /vod-.*-aoc\.tv\.apple\.com/i.test(url) ? "Apple_TV_Plus"
+	// 					: /vod-.*-amt\.tv\.apple\.com/i.test(url) ? "Apple_TV"
+	// 						: /(hls|hls-svod)\.itunes\.apple\.com/i.test(url) ? "Apple_Fitness"
+	// 							: "Apple"
+	// 	$.log(`🚧 ${$.name}, Set Environment Variables`, `platform: ${platform}`, "");
+	// 	Settings = await getENV(name, platform, database).then(v=> v.Settings);
+	// };
 	Settings.Switch = JSON.parse(Settings.Switch) //  BoxJs字符串转Boolean
 	if (typeof Settings.Types === "string") Settings.Types = Settings.Types.split(",") // BoxJs字符串转数组
 	if (Array.isArray(Settings.Types)) {
