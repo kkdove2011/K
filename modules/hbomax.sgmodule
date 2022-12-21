@@ -1,0 +1,11 @@
+#!name=HBO Max字幕
+#!desc=
+
+[Script]
+DualSubs.HBO_Max.HLS.Main.m3u8 = type=http-response, pattern=^https?:\/\/manifests(\.v2)?\.api\.hbo\.com\/hls\.m3u8(\?.+)?$, requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/kkdove2011/K/master/scripts/hbo_hls_main_m3u8.js
+DualSubs.HBO_Max.HLS.WebVTT.m3u8 = type=http-response, pattern=^https?:\/\/manifests(\.v2)?\.api\.hbo\.com\/hlsMedia\.m3u8(\?.*dualsubs=\w+)$, requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/kkdove2011/K/master/scripts/hbo_hls_webvtt_m3u8.js
+DualSubs.HBO_Max.SUB.WebVTT = type=http-response, pattern=^https?:\/\/(.+)\.hbomaxcdn\.com\/videos\/(.+)\.vtt(\?.*dualsubs=\w+)$, requires-body=1, max-size=0, timeout=30, script-path=https://raw.githubusercontent.com/kkdove2011/K/master/scripts/hbo_sub_webvtt.js
+
+[MITM]
+hostname = %APPEND% manifests.api.hbo.com, manifests.v2.api.hbo.com, *.hbomaxcdn.com
+tcp-connection = true
