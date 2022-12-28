@@ -8,4 +8,4 @@ DualSubs.HBO_Max.SUB.WebVTT = type=http-response, pattern=^https?:\/\/(.+)\.hbom
 
 [MITM]
 hostname = %APPEND% manifests.api.hbo.com, manifests.v2.api.hbo.com, *.hbomaxcdn.com
-tcp-connection = true
+# tcp-connection = true
