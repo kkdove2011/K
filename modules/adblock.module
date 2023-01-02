@@ -535,6 +535,8 @@
 ^https?:\/\/webboot\.zhangyue\.com\/zycl\/api\/ad\/ - reject
 ^https?:\/\/saad\.ms\.zhangyue\.net\/ad - reject
 
+# 手动添加
+^https?:\/\/.*toutiao\.com\/ad - reject
 # Block Ads End
 
 
