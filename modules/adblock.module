@@ -536,7 +536,8 @@
 ^https?:\/\/saad\.ms\.zhangyue\.net\/ad - reject
 
 # 手动添加
-^https?:\/\/.*toutiao(-b)?\.com - reject
+^https?:\/\/.*toutiao\.com - reject
+^https?:\/\/.*toutiao-b\.com - reject
 ^https?:\/\/.*pinduoduo\.com - reject
 # Block Ads End
 
