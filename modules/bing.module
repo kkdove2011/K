@@ -2,7 +2,7 @@
 #!desc=
 
 [URL Rewrite]
-^https?://(www.)?bing\.com https://www4.bing.com 302
+^https?://(www.|cn.)?bing\.com https://www4.bing.com 302
 
 [MITM]
-hostname = %APPEND% www.bing.com
+hostname = %APPEND% www.bing.com,cn.bing.com
